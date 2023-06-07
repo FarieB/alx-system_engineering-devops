@@ -8,3 +8,4 @@ mkdir /rootdirectory/new directory Create a script that creates a directory name
 mv betty /tmp/myfirstdirectory Move the file
 rm /tmp/myfirstdirectory/betty delete file
 rm dir /tmp/myfirstdirectory delete directory
+cd .. move to the previous directory
