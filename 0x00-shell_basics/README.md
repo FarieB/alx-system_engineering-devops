@@ -13,3 +13,4 @@ ls -la . .. / /boot Write a script that lists all files (even ones with names be
 file /tmp/iamafile command to print type of the file
 ln -s /bin/ls __ls__ symbolic link
 cp -rua *.html ../ copying htlm files
+mv [[:upper:]]* /tmp/u moving all files beginning with an uppercase letter to the directory
