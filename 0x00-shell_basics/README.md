@@ -15,3 +15,4 @@ ln -s /bin/ls __ls__ symbolic link
 cp -rua *.html ../ copying htlm files
 mv [[:upper:]]* /tmp/u moving all files beginning with an uppercase letter to the directory
 rm *~ delete all files in a directory
+mkdir welcome/ welcome/to welcome/to/school create multiple directories
