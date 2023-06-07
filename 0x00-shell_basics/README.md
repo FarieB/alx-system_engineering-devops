@@ -7,3 +7,4 @@ ls -lna
 mkdir /rootdirectory/new directory Create a script that creates a directory named myfirstdirectory in the /tmp/ directory
 mv betty /tmp/myfirstdirectory Move the file
 rm /tmp/myfirstdirectory/betty delete file
+rm dir /tmp/myfirstdirectory delete directory
