@@ -11,3 +11,4 @@ rm dir /tmp/myfirstdirectory delete directory
 cd -  move to the previous directory
 ls -la . .. / /boot Write a script that lists all files (even ones with names beginning with a period character, which are normally hidden) in the current directory and the parent of the working directory and the /boot directory (in this order), in long format.
 file /tmp/iamafile command to print type of the file
+ln -s /bin/ls __ls__ symbolic link
