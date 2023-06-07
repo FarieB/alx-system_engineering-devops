@@ -9,3 +9,4 @@ mv betty /tmp/myfirstdirectory Move the file
 rm /tmp/myfirstdirectory/betty delete file
 rm dir /tmp/myfirstdirectory delete directory
 cd -  move to the previous directory
+ls -la . .. / /boot Write a script that lists all files (even ones with names beginning with a period character, which are normally hidden) in the current directory and the parent of the working directory and the /boot directory (in this order), in long format.
