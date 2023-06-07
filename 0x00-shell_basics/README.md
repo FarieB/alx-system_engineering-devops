@@ -12,8 +12,9 @@ cd -  move to the previous directory
 ls -la . .. / /boot Write a script that lists all files (even ones with names beginning with a period character, which are normally hidden) in the current directory and the parent of the working directory and the /boot directory (in this order), in long format.
 file /tmp/iamafile command to print type of the file
 ln -s /bin/ls __ls__ symbolic link
-cp -rua *.html ../ copying htlm files
-mv [[:upper:]]* /tmp/u moving all files beginning with an uppercase letter to the directory
-rm *~ delete all files in a directory
+cp -rua .html ../ copying htlm files
+mv [[:upper:]] /tmp/u moving all files beginning with an uppercase letter to the directory
+rm ~ delete all files in a directory
 mkdir welcome/ welcome/to welcome/to/school create multiple directories
 ls -amvp multiple listing commands
+magic file 
