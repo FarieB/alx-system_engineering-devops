@@ -8,3 +8,4 @@ Write a script that adds execute permission to the owner and the group owner and
 Write a script that adds execution permission to the owner the group owner and the other users to the file hello
 Permissions to other users only
 John Does different permissions
+Referencing copying file permissions
