@@ -9,3 +9,4 @@ Write a script that adds execution permission to the owner the group owner and t
 Permissions to other users only
 John Does different permissions
 Referencing copying file permissions
+Permission Create a script that adds execute permission to all subdirectories of the current directory for the owner, the group owner and all other users.
