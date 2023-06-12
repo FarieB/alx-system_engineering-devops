@@ -18,3 +18,4 @@
 18. -v non matching lines
 19. display lines starting with letter
 20. translate replace characters
+21. remove letters
