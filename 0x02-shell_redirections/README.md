@@ -19,3 +19,4 @@
 19. display lines starting with letter
 20. translate replace characters
 21. remove letters
+22. reverse input
