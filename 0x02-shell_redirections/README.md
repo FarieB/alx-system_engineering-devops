@@ -14,3 +14,4 @@
 14. Sort | unique -u
 15. grep pattern
 16. grep word count
+17. pattern and 3 lines
