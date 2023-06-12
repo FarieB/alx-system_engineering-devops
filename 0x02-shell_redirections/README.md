@@ -9,3 +9,4 @@
 9. Overriding
 10. Duplicate
 11. Regular file
+12. Word count
