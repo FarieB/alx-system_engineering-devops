@@ -7,3 +7,4 @@
 7. Third line
 8. Special characters
 9. Overriding
+10. Duplicate
