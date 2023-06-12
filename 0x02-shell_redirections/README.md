@@ -8,3 +8,4 @@
 8. Special characters
 9. Overriding
 10. Duplicate
+11. Regular file
