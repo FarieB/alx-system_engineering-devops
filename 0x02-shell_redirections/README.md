@@ -20,3 +20,4 @@
 20. translate replace characters
 21. remove letters
 22. reverse input
+23. script that displays all users and their home directories, sorted by users
