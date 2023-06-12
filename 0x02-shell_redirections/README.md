@@ -10,4 +10,5 @@
 10. Duplicate
 11. Regular file
 12. Word count
-13. Ten newest files
+13. Ten newest file
+14. Sort | unique -u
