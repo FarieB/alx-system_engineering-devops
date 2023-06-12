@@ -5,3 +5,4 @@
 5. Display last ten lines
 6. First ten lines
 7. Third line
+8. Special characters
