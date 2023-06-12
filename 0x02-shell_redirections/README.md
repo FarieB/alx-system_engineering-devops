@@ -16,3 +16,4 @@
 16. grep word count
 17. pattern and 3 lines
 18. -v non matching lines
+19. display lines starting with letter
