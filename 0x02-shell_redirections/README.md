@@ -13,3 +13,4 @@
 13. Ten newest file
 14. Sort | unique -u
 15. grep pattern
+16. grep word count
