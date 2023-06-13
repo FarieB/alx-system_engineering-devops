@@ -7,3 +7,4 @@
 7. global variable
 8. adding variable
 9. arithmatic expansion
+10. exponent breath
