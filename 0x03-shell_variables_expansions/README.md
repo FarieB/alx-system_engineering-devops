@@ -6,3 +6,4 @@
 6. create local variable
 7. global variable
 8. adding variable
+9. arithmatic expansion
