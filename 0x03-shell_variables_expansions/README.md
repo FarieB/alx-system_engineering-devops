@@ -9,3 +9,4 @@
 9. arithmatic expansion
 10. exponent breath
 11. binary to decimal
+12. combinations
