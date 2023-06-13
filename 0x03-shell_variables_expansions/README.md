@@ -11,3 +11,4 @@
 11. binary to decimal
 12. combinations
 13. print float
+14. base 16
