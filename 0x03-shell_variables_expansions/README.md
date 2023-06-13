@@ -12,3 +12,4 @@
 12. combinations
 13. print float
 14. base 16
+15. encode decode
