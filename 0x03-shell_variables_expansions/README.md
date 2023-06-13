@@ -4,3 +4,4 @@
 4. paths
 5. print all variables
 6. create local variable
+7. global variable
