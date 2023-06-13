@@ -8,3 +8,4 @@
 8. adding variable
 9. arithmatic expansion
 10. exponent breath
+11. binary to decimal
