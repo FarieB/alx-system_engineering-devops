@@ -3,3 +3,4 @@
 3. path
 4. paths
 5. print all variables
+6. create local variable
