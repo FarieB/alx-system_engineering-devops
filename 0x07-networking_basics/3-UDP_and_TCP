@@ -1,15 +1,3 @@
-#!/usr/bin/env bash
-# This script answers questions about TCP and UDP protocols
-
-echo "Which statement is correct for the TCP box?"
-echo "1. It is a protocol that is transferring data in a slow way but surely"
-echo "2. It is a protocol that is transferring data in a fast way and might loss data along in the process"
-
-echo "Which statement is correct for the UDP box?"
-echo "1. It is a protocol that is transferring data in a slow way but surely"
-echo "2. It is a protocol that is transferring data in a fast way and might loss data along in the process"
-
-echo "Which statement is correct for the TCP worker?"
-echo "1. Have you received boxes x, y, z?"
-echo "2. May I increase the rate at which I am sending you boxes?"
-
+1
+2
+1

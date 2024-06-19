@@ -1,13 +1,2 @@
-#!/usr/bin/env bash
-# This script answers questions about MAC addresses and IP addresses
-
-echo "What is a MAC address?"
-echo "1. The name of a network interface"
-echo "2. The unique identifier of a network interface"
-echo "3. A network interface"
-
-echo "What is an IP address?"
-echo "1. Is to devices connected to a network what postal address is to houses"
-echo "2. The unique identifier of a network interface"
-echo "3. Is a number that network devices use to connect to networks"
-
+2
+1
