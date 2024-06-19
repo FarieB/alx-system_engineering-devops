@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 # This script displays "Best School" 10 times, with "Hi" on a new line on the 9th iteration
-
-COUNTER=0
-while [ $COUNTER -lt 11 ]
+i="0"
+while [ $i -lt 10 ]
 do
-    if [ $COUNTER = 9 ]
-    then
-        echo "Hi"
-    else
-        echo "Best School"
-    fi
-    let COUNTER+=1
+echo "Best School"
+if [ $i -eq 8 ]
+then echo "Hi"
+fi
+i=$((i+1))
 done
