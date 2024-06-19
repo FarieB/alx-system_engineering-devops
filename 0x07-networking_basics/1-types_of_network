@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script answers questions about types of networks
+
+echo "What type of network is a computer in local connected to?"
+echo "1. Internet"
+echo "2. WAN"
+echo "3. LAN"
+
+echo "What type of network could connect an office in one building to another office in a building a few streets away?"
+echo "1. Internet"
+echo "2. WAN"
+echo "3. LAN"
+
+echo "What network do you use when you browse www.google.com from your smartphone (not connected to the Wifi)?"
+echo "1. Internet"
+echo "2. WAN"
+echo "3. LAN"
+
