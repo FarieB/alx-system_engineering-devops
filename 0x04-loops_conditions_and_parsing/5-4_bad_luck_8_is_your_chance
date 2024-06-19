@@ -2,17 +2,17 @@
 # This script displays different messages based on the loop iteration
 
 # Initialize a counter
-counter=1
-
-# Using a while loop to iterate from 1 to 10
-while [ $counter -le 10 ]; do
-    if [ $counter -eq 4 ]; then
+COUNTER=1
+while [ $COUNTER -lt 11 ]
+do
+    if [ $COUNTER = 4 ]
+    then
         echo "bad luck"
-    elif [ $counter -eq 8 ]; then
+    elif [ $COUNTER = 8 ]
+    then
         echo "good luck"
     else
         echo "Best School"
     fi
-    ((counter++))
+    let COUNTER+=1
 done
-
