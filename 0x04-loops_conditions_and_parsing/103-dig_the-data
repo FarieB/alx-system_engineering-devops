@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Bash script to parse Apache log file, count occurrences by IP and HTTP status code, and display in descending order
+
+# Use awk to process apache-access.log, count occurrences, and sort by occurrence number
+awk '{ count[$1 " " $9]++ } END { for (key in count) print count[key], key }' apache-access.log | sort -nr
+
