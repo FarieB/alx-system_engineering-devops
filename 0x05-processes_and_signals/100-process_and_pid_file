@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# This script demonstrates signal handling and PID file management
+
+PIDFILE="/var/run/myscript.pid"
+
+# Function to create PID file
+create_pid_file() {
+    echo $$ > "$PIDFILE"
+}
+
+# Function to remove PID file
+remove_pid_file() {
+    if [ -f "$PIDFILE" ]; then
+        rm "$PIDFILE"
+    fi
+}
+
+# Signal handler for SIGTERM and SIGQUIT
+handle_term_quit() {
+    echo "Deleting PID file and terminating script."
+    remove_pid_file
+    exit 0
+}
+
+# Signal handler for SIGINT
+handle_int() {
+    echo "Y U no love me?!"
+}
+
+# Signal handler for SIGTERM
+handle_term() {
+    echo "I hate the kill command"
+}
+
+# Trap signals
+trap handle_term_quit SIGTERM SIGQUIT
+trap handle_int SIGINT
+trap handle_term SIGTERM
+
+# Main loop to display message indefinitely
+echo "To infinity and beyond"
+create_pid_file
+
+while true; do
+    echo "To infinity and beyond"
+    sleep 1
+done
+
