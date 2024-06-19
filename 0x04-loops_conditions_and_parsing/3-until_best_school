@@ -2,12 +2,9 @@
 # This script is displaying "Best School" 10 times
 
 # Initialize a counter
-counter=0
-
-# Using an until loop to print "Best School" 10 times
-until [ $counter -ge 10 ]
+COUNTER=10
+until [ $COUNTER -lt 1 ]
 do
     echo "Best School"
-    ((counter++))
+    let COUNTER-=1
 done
-
