@@ -2,11 +2,4 @@
 # This script stops the 7-highlander process
 
 # Check if 7-highlander is running
-if ps aux | grep -q '[7]-highlander'; then
-    # Disown the process to remove it from the shell's job control
-    disown %[7]-highlander
-    echo "7-highlander has been killed."
-else
-    echo "7-highlander process not found."
-fi
-
+pkill -SIGKILL -f "7-highlander"
