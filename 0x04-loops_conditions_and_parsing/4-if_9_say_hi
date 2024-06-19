@@ -5,8 +5,10 @@
 counter=0
 
 # Using a while loop to print "Best School" 10 times
-while [ $counter -lt 10 ]; do
-    if [ $counter -eq 8 ]; then
+while [ $counter -lt 10 ]
+do
+    if [ $counter -eq 8 ]
+then
         echo "Hi"
     else
         echo "Best School"
