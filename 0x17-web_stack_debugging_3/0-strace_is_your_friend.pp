@@ -1,6 +1,7 @@
-This Puppet manifest renames the incorrectly named class-wp-locale.phpp to class-wp-locale.php
-exec { 'fix-wordpress-locale-file':
-  command => '/bin/mv /var/www/html/wp-includes/class-wp-locale.phpp /var/www/html/wp-includes/class-wp-locale.php',
-  onlyif  => '/bin/test -f /var/www/html/wp-includes/class-wp-locale.phpp',
+# Creat a manifest that fix all termintion of phpp.
+
+exec { 'fix_phpp':
+  command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
+  path    => ['/bin', '/usr/bin/', '/usr/loca/bin/'],
 }
 
