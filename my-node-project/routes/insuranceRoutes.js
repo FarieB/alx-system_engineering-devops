@@ -9,7 +9,11 @@ router.get('/non-life', async (req, res) => {
   try {
     const companies = await InsuranceCompany.findAll({
       where: { type: 'Non-Life' },
-      include: [{ model: InsuranceProduct, as: 'products' }]
+      include: [{
+        model: InsuranceProduct,
+        as: 'products', // Ensure that the alias matches your model definition
+        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId'] // Specify the columns to retrieve
+      }]
     });
     res.json(companies);
   } catch (error) {
@@ -25,7 +29,11 @@ router.get('/life', async (req, res) => {
   try {
     const companies = await InsuranceCompany.findAll({
       where: { type: 'Life' },
-      include: [{ model: InsuranceProduct, as: 'products' }]
+      include: [{
+        model: InsuranceProduct,
+        as: 'products', // Ensure that the alias matches your model definition
+        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId'] // Specify the columns to retrieve
+      }]
     });
     res.json(companies);
   } catch (error) {
@@ -45,7 +53,8 @@ router.post('/compare', async (req, res) => {
       where: { type },
       include: [{
         model: InsuranceProduct,
-        as: 'products',
+        as: 'products', // Ensure that the alias matches your model definition
+        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId'], // Specify the columns to retrieve
         where: {
           premium: { [Op.between]: premiumRange },
           coverage: { [Op.between]: coverageRange }
