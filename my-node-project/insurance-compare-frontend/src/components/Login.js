@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'; // Import useHistory for redirection
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -7,6 +8,7 @@ const Login = () => {
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const history = useHistory(); // Initialize useHistory hook for navigation
 
     const { email, password } = formData;
 
@@ -28,8 +30,8 @@ const Login = () => {
 
             const data = await response.json();
             if (response.ok) {
-                console.log(data); // Handle successful response, e.g., store token, redirect
-                // Optionally store token and redirect the user
+                localStorage.setItem('jwtToken', data.token); // Store token in localStorage
+                history.push('/dashboard'); // Redirect to another page (e.g., dashboard)
             } else {
                 setError(data.msg || 'Login failed');
             }
