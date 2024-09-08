@@ -1,16 +1,12 @@
-require('dotenv').config(); // Load environment variables
-
 const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { check, validationResult } = require('express-validator');
-const User = require('../models/User');
 const router = express.Router();
+const User = require('../models/User');
+const { generateToken, verifyToken } = require('../utils/jwt');
+const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
-// @route  POST api/register
-// @desc   Register user
+// Register
 router.post('/register', [
-    check('username', 'Username is required').not().isEmpty(),
     check('email', 'Please include a valid email').isEmail(),
     check('password', 'Password must be at least 6 characters').isLength({ min: 6 })
 ], async (req, res) => {
@@ -19,44 +15,32 @@ router.post('/register', [
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-        let user = await User.findOne({ where: { email } });
+        let user = await User.findOne({ email });
         if (user) {
-            return res.status(400).json({ msg: 'User already exists' });
+            return res.status(400).json({ error: 'User already exists' });
         }
 
+        // Hash password before saving
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         user = new User({
-            username,
             email,
-            password: await bcrypt.hash(password, 10) // Hashing password
+            password: hashedPassword
         });
 
         await user.save();
-
-        const payload = {
-            user: {
-                id: user.id
-            }
-        };
-
-        jwt.sign(
-            payload,
-            process.env.JWT_SECRET, // Use secret key from environment variable
-            { expiresIn: 3600 }, // 1 hour expiration
-            (err, token) => {
-                if (err) throw err;
-                res.json({ token });
-            }
-        );
-    } catch (err) {
-        res.status(500).send('Server error');
+        const token = generateToken(user);
+        res.status(201).json({ token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server error' });
     }
 });
 
-// @route  POST api/login
-// @desc   Login user
+// Login
 router.post('/login', [
     check('email', 'Please include a valid email').isEmail(),
     check('password', 'Password is required').exists()
@@ -69,33 +53,31 @@ router.post('/login', [
     const { email, password } = req.body;
 
     try {
-        let user = await User.findOne({ where: { email } });
-        if (!user) {
-            return res.status(400).json({ msg: 'Invalid credentials' });
+        const user = await User.findOne({ email });
+        if (!user || !(await bcrypt.compare(password, user.password))) {
+            return res.status(400).json({ error: 'Invalid credentials' });
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).json({ msg: 'Invalid credentials' });
+        const token = generateToken(user);
+        res.json({ token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// Get current user
+router.get('/me', (req, res) => {
+    const token = req.headers['x-auth-token'];
+    if (token) {
+        try {
+            const decoded = verifyToken(token);
+            res.json({ id: decoded.id, email: decoded.email });
+        } catch (error) {
+            res.status(401).json({ error: 'Unauthorized' });
         }
-
-        const payload = {
-            user: {
-                id: user.id
-            }
-        };
-
-        jwt.sign(
-            payload,
-            process.env.JWT_SECRET, // Use secret key from environment variable
-            { expiresIn: 3600 }, // 1 hour expiration
-            (err, token) => {
-                if (err) throw err;
-                res.json({ token });
-            }
-        );
-    } catch (err) {
-        res.status(500).send('Server error');
+    } else {
+        res.status(401).json({ error: 'No token provided' });
     }
 });
 
