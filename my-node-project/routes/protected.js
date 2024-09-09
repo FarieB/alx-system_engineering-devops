@@ -1,5 +1,5 @@
 const express = require('express');
-const authenticate = require('../middleware/auth');
+const authenticate = require('../models/authMiddleware'); // Correct path to authMiddleware
 const router = express.Router();
 
 router.get('/protected-route', authenticate, (req, res) => {

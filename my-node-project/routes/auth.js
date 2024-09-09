@@ -18,7 +18,7 @@ router.post('/register', [
     const { email, password } = req.body;
 
     try {
-        let user = await User.findOne({ email });
+        let user = await User.findOne({ where: { email } });
         if (user) {
             return res.status(400).json({ error: 'User already exists' });
         }
@@ -26,12 +26,11 @@ router.post('/register', [
         // Hash password before saving
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        user = new User({
+        user = await User.create({
             email,
             password: hashedPassword
         });
 
-        await user.save();
         const token = generateToken(user);
         res.status(201).json({ token });
     } catch (error) {
@@ -53,7 +52,7 @@ router.post('/login', [
     const { email, password } = req.body;
 
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ where: { email } });
         if (!user || !(await bcrypt.compare(password, user.password))) {
             return res.status(400).json({ error: 'Invalid credentials' });
         }
