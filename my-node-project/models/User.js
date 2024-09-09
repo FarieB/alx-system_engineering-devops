@@ -2,9 +2,9 @@
 
 const { DataTypes } = require('sequelize');
 const bcrypt = require('bcryptjs');
-const { sequelize } = require('./index'); // Ensure this path is correct
+const db = require('./index'); // Import the db object from index.js
 
-const User = sequelize.define('User', {
+const User = db.sequelize.define('User', {
     username: {
         type: DataTypes.STRING,
         allowNull: false,
