@@ -16,11 +16,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 const insuranceRoutes = require('./routes/insuranceRoutes');
 const authRoutes = require('./routes/auth');
 const preferencesRoutes = require('./routes/preferences');
+const protectedRoutes = require('./routes/protected'); // Import protected routes
 
 // Use routes
 app.use('/api/insurance', insuranceRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/preferences', preferencesRoutes);
+app.use('/api/protected', protectedRoutes); // Mount protected routes
 
 // Error handling middleware
 app.use((err, req, res, next) => {
