@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { InsuranceCompany, InsuranceProduct, Op } = require('../models'); // Ensure Op is imported
+const { InsuranceCompany, InsuranceProduct, Op } = require('../models');
 
 /**
  * Get Non-Life Insurance companies
@@ -11,13 +11,13 @@ router.get('/non-life', async (req, res) => {
       where: { type: 'Non-Life' },
       include: [{
         model: InsuranceProduct,
-        as: 'products', // Ensure that the alias matches your model definition
-        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId'] // Specify the columns to retrieve
+        as: 'products',
+        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId']
       }]
     });
     res.json(companies);
   } catch (error) {
-    console.error('Error fetching non-life insurance companies:', error); // Added logging
+    console.error('Error fetching non-life insurance companies:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -31,13 +31,13 @@ router.get('/life', async (req, res) => {
       where: { type: 'Life' },
       include: [{
         model: InsuranceProduct,
-        as: 'products', // Ensure that the alias matches your model definition
-        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId'] // Specify the columns to retrieve
+        as: 'products',
+        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId']
       }]
     });
     res.json(companies);
   } catch (error) {
-    console.error('Error fetching life insurance companies:', error); // Added logging
+    console.error('Error fetching life insurance companies:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -53,8 +53,8 @@ router.post('/compare', async (req, res) => {
       where: { type },
       include: [{
         model: InsuranceProduct,
-        as: 'products', // Ensure that the alias matches your model definition
-        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId'], // Specify the columns to retrieve
+        as: 'products',
+        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId'],
         where: {
           premium: { [Op.between]: premiumRange },
           coverage: { [Op.between]: coverageRange }
@@ -63,7 +63,7 @@ router.post('/compare', async (req, res) => {
     });
     res.json(companies);
   } catch (error) {
-    console.error('Error comparing insurance products:', error); // Added logging
+    console.error('Error comparing insurance products:', error);
     res.status(500).json({ error: 'Comparison failed' });
   }
 });

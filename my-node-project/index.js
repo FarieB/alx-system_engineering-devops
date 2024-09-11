@@ -1,43 +1,20 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const path = require('path');
 const app = express();
-
-// Middleware setup
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Import and use routes
-const insuranceRoutes = require('./routes/insuranceRoutes');
 const authRoutes = require('./routes/auth');
-const preferencesRoutes = require('./routes/preferences');
-const protectedRoutes = require('./routes/protected'); // Import protected routes
+const insuranceRoutes = require('./routes/insuranceRoutes');
+const protectedRoutes = require('./routes/protected');
 
-// Use routes
-app.use('/api/insurance', insuranceRoutes);
+app.use(express.json()); // Middleware for parsing JSON
+
+// Authentication routes
 app.use('/api/auth', authRoutes);
-app.use('/api/preferences', preferencesRoutes);
-app.use('/api/protected', protectedRoutes); // Mount protected routes
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something went wrong!');
-});
+// Insurance routes
+app.use('/api/insurance', insuranceRoutes);
 
-// 404 Not Found middleware
-app.use((req, res) => {
-    res.status(404).send('Not Found');
-});
+// Protected routes - ensure that this is the correct path
+app.use('/api/protected', protectedRoutes);
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
