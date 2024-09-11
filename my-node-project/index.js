@@ -1,19 +1,21 @@
 const express = require('express');
+const authMiddleware = require('./models/authMiddleware');
 const app = express();
-const authRoutes = require('./routes/auth');
-const insuranceRoutes = require('./routes/insuranceRoutes');
-const protectedRoutes = require('./routes/protected');
 
 app.use(express.json()); // Middleware for parsing JSON
 
-// Authentication routes
-app.use('/api/auth', authRoutes);
+// Debugging log to verify server start
+console.log("Server is starting...");
 
-// Insurance routes
-app.use('/api/insurance', insuranceRoutes);
+// Example route using the authMiddleware
+app.use('/api/protected', authMiddleware, (req, res) => {
+    res.json({ msg: 'Access granted to protected route!' });
+});
 
-// Protected routes - ensure that this is the correct path
-app.use('/api/protected', protectedRoutes);
+// Example public route without authentication
+app.get('/api/public', (req, res) => {
+    res.json({ msg: 'Public route, no authentication needed' });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

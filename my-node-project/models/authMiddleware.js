@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
-module.exports = function(req, res, next) {
-    console.log('Headers:', req.headers); // Debugging line
+module.exports = function (req, res, next) {
+    console.log('Headers:', req.headers); // Debugging line to check headers
 
     if (!req.headers || !req.headers['x-auth-token']) {
         console.error('Bad request: Headers missing');
