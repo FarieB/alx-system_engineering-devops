@@ -1,18 +1,19 @@
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Users', [
-      {
-        username: 'admin',
-        email: 'admin@example.com',
-        password: 'yourhashedpassword', // Make sure it's hashed
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      // Add more users if needed
-    ]);
+  async up (queryInterface, Sequelize) {
+    await queryInterface.bulkInsert('Users', [{
+      username: 'demoUser',
+      email: 'demo@example.com',
+      password: 'hashedPassword', // You might want to hash this password
+      preferences: '{}',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {});
   },
 
-  down: async (queryInterface, Sequelize) => {
+  async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete('Users', null, {});
   }
 };
