@@ -8,11 +8,11 @@ const { InsuranceCompany, InsuranceProduct, Op } = require('../models');
 router.get('/non-life', async (req, res) => {
   try {
     const companies = await InsuranceCompany.findAll({
-      where: { type: 'Non-Life' },
       include: [{
         model: InsuranceProduct,
         as: 'products',
-        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId']
+        where: { type: 'Motor' }, // Adjust based on the product type
+        attributes: ['id', 'type', 'company', 'premium', 'coverage', 'terms_conditions', 'created_at']
       }]
     });
     res.json(companies);
@@ -28,11 +28,11 @@ router.get('/non-life', async (req, res) => {
 router.get('/life', async (req, res) => {
   try {
     const companies = await InsuranceCompany.findAll({
-      where: { type: 'Life' },
       include: [{
         model: InsuranceProduct,
         as: 'products',
-        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId']
+        where: { type: 'Term' }, // Adjust based on the product type
+        attributes: ['id', 'type', 'company', 'premium', 'coverage', 'terms_conditions', 'created_at']
       }]
     });
     res.json(companies);
@@ -50,15 +50,15 @@ router.post('/compare', async (req, res) => {
 
   try {
     const companies = await InsuranceCompany.findAll({
-      where: { type },
       include: [{
         model: InsuranceProduct,
         as: 'products',
-        attributes: ['id', 'productType', 'premium', 'coverage', 'termsConditions', 'createdAt', 'updatedAt', 'InsuranceCompanyId'],
         where: {
+          type: type,
           premium: { [Op.between]: premiumRange },
           coverage: { [Op.between]: coverageRange }
-        }
+        },
+        attributes: ['id', 'type', 'company', 'premium', 'coverage', 'terms_conditions', 'created_at']
       }]
     });
     res.json(companies);
@@ -69,4 +69,3 @@ router.post('/compare', async (req, res) => {
 });
 
 module.exports = router;
-
