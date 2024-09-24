@@ -27,8 +27,8 @@ module.exports = {
         allowNull: false
       },
       preferences: {
-        type: Sequelize.JSONB,
-        defaultValue: {}
+        type: Sequelize.TEXT, // Change this to TEXT if JSONB is not supported
+        defaultValue: '{}' // Set a default string value for TEXT
       },
       createdAt: {
         allowNull: false,
