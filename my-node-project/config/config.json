@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "#Farie@1989",
-    "database": "insurance_compare_development",
+    "database": "insurance_db",
     "host": "localhost",
     "dialect": "mysql"
   },
@@ -21,4 +21,3 @@
     "dialect": "mysql"
   }
 }
-
