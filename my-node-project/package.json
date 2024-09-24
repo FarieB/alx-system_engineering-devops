@@ -6,8 +6,6 @@
   "predeploy": "npm run build-client",
   "deploy": "gh-pages -d client/build",
   "dev": "concurrently \"npm run start\" \"npm run client\""
-}
-
   },
   "keywords": [],
   "author": "",
