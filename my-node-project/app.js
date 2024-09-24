@@ -1,9 +1,11 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const cors = require('cors'); // Add this line
 const app = express();
 const port = 5000;
 
 // Middleware to parse JSON bodies
+app.use(cors()); // Enable CORS
 app.use(express.json());
 
 // Authentication middleware
@@ -32,4 +34,3 @@ app.get('/test', authenticate, (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
-
