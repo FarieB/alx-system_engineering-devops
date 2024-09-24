@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../models/User'); // Ensure User model is updated to match new DB schema
 const { generateToken, verifyToken } = require('../utils/jwt');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
@@ -15,7 +15,7 @@ router.post('/register', [
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, password } = req.body;
+    const { email, password, username } = req.body; // Include username
 
     try {
         let user = await User.findOne({ where: { email } });
@@ -23,13 +23,8 @@ router.post('/register', [
             return res.status(400).json({ error: 'User already exists' });
         }
 
-        // Hash password before saving
         const hashedPassword = await bcrypt.hash(password, 10);
-
-        user = await User.create({
-            email,
-            password: hashedPassword
-        });
+        user = await User.create({ email, password: hashedPassword, username }); // Add username
 
         const token = generateToken(user);
         res.status(201).json({ token });
@@ -81,4 +76,3 @@ router.get('/me', (req, res) => {
 });
 
 module.exports = router;
-
